@@ -1,11 +1,11 @@
-from point2D import Point2D 
+from vector2D import Vector2D 
 
 class Points2D:
 
     def __init__(self, points):
         self._points = []
         for point in points:
-            self._points.append(Point2D(point))
+            self._points.append(Vector2D(point))
         
     
     def move(self, v):

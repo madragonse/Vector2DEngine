@@ -1,14 +1,15 @@
+from physics import Physics
 from typing import List
 from line2D import Line2D
-from point2D import Point2D 
+from vector2D import Vector2D 
 import math
 import matrixOp
 
-class Shape2D:
+class Shape2D(Physics):
 
     def __init__(self, position):
+        super().__init__(position)
         self.__lines = []
-        self.__position:Point2D = Point2D(position)
         self.__rotation_matrix = [[1,1],[1,1]]
         self.__rotation_angle = 0
         self.__matrix_op = matrixOp.Matrix_op()
@@ -36,12 +37,12 @@ class Shape2D:
             tem = line.getPoints()
             for i in range(0, tem.__len__()):
                 tem[i] = self.__matrix_op.multiply_vector(self.__rotation_matrix, tem[i])
-                tem[i][0] += self.__position.getX()
-                tem[i][1] += self.__position.getY()
+                tem[i][0] += self._position.getX()
+                tem[i][1] += self._position.getY()
             ret.append(tem)
         return ret
     def move(self, v):
-        self.__position.move(v)
+        self._position.move(v)
 
 
     
